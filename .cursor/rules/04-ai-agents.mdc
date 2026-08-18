@@ -1,0 +1,20 @@
+---
+description: Instrucciones para integracion de LLMs, Structured Output y Tool Calling
+globs: src/core/llm/**/*.ts, src/features/ai/**/*.ts
+---
+# AI Agents & LLM Skill
+
+## Vercel AI SDK
+- Usa \@ai-sdk/react\ para hooks en frontend si hay un endpoint externo.
+- Para correr logica LLM on-device o directo en la app, asegura tener los polyfills (\web-streams-polyfill\, etc.) configurados.
+
+## Structured Output (El estandar de extraccion)
+- NUNCA pidas al LLM que devuelva JSON parseando el string manualmente.
+- Usa SIEMPRE \generateObject\ de \i\ pasandole un schema estricto con \zod\.
+- Ejemplo: \z.object({ foodName: z.string(), calories: z.number() })\.
+- Pasa siempre \schema\ y establece restricciones para evitar alucinaciones.
+
+## Tool Calling
+- Todo lo que el LLM pueda hacer en la app (guardar entrenamiento, loguear agua) debe estar tipado como un \	ool()\ con \description\ clara y parametros validados por \zod\.
+- Las \	ools\ del agente invocaran los mutators de Zustand o las queries de SQLite.
+

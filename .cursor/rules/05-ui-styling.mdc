@@ -1,0 +1,17 @@
+---
+description: Reglas para estilos UI y el Design System
+globs: src/core/ui/**/*.tsx, src/components/**/*.tsx
+---
+# Styling & UI Skill
+
+## Uso de Themes
+- Los colores no deben estar hardcodeados. Usa los tokens en \src/core/theme/index.ts\.
+- La app es **Dark Mode First**. Verifica siempre el contraste para modo oscuro en los componentes base.
+
+## Iconografia
+- Usa exclusivamente \lucide-react-native\ para los iconos, manteniendo un trazo de \strokeWidth={2}\.
+
+## UI Components Modulares
+- No agregues estilos en linea \style={{...}}\ salvo para valores dinamicos calculados.
+- Crea las stylesheets con \StyleSheet.create\ o utiliza NativeWind (Tailwind) si esta configurado en el componente actual.
+

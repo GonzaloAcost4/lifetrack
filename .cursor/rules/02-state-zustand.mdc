@@ -1,0 +1,18 @@
+---
+description: Patrones para manejo de estado con Zustand
+globs: src/stores/**/*.ts, src/features/**/*.ts
+---
+# Zustand State Management Skill
+
+## Slices Pattern
+- Para evitar stores gigantes, divide el estado en slices por feature (ej: \createNutritionSlice\, \createTrainingSlice\).
+- Combina los slices en un \useAppStore\ central si necesitan compartir informacion, o mantenlos separados (\useNutritionStore\) si son dominios aislados.
+
+## Mutaciones e Inmutabilidad
+- Zustand usa inmutabilidad. Usa el setter provisto y esparce (\...\) el estado anterior cuando actualices objetos anidados, o integra \immer\ si los objetos son muy profundos.
+
+## Persistencia
+- Usa el middleware \persist\ de Zustand.
+- El storage debe configurarse usando \@react-native-async-storage/async-storage\ (o MMKV si se migra despues).
+- Usa \partialize\ si no necesitas persistir todo el slice en disco (ej: no persistir estados de carga o UI temporales).
+

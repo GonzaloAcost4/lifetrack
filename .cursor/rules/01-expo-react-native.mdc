@@ -1,0 +1,21 @@
+---
+description: Reglas y buenas practicas para el desarrollo con React Native y Expo SDK 57+
+globs: src/**/*.tsx, src/**/*.ts
+---
+# Expo & React Native Skill
+
+## Arquitectura y Enrutamiento
+- Usa **Expo Router** (file-based routing) para la navegacion.
+- Los layouts deben estar en archivos \_layout.tsx\.
+- Usa \Link\ de \expo-router\ o el hook \useRouter()\ para navegacion imperativa.
+- Manten los componentes de UI puros en \src/core/ui\ y la logica de negocio en los features (\src/features/\).
+
+## Rendimiento
+- Evita re-renders innecesarios usando \React.memo\, \useMemo\ y \useCallback\ solo cuando pases props a componentes pesados o listas.
+- Usa \FlashList\ (Shopify) en lugar de \FlatList\ para listas largas (como historial de ejercicios o alimentos).
+- Usa \eact-native-reanimated\ para animaciones en lugar de la API Animated base.
+
+## Componentes Nativos
+- Usa \expo-image\ en lugar del componente \Image\ por defecto de React Native para mejor cache.
+- Maneja las areas seguras usando \eact-native-safe-area-context\ (SafeAreaView o useSafeAreaInsets).
+

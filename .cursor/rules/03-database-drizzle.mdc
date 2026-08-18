@@ -1,0 +1,18 @@
+---
+description: Reglas para la base de datos offline-first usando Expo SQLite y Drizzle ORM
+globs: src/core/db/**/*.ts, src/services/**/*.ts
+---
+# Local-First Database Skill
+
+## Drizzle ORM & Expo SQLite
+- Usa \expo-sqlite\ para la ejecucion cruda y \drizzle-orm/expo-sqlite\ como capa ORM type-safe.
+- Define los esquemas en archivos separados (ej: \src/core/db/schema/nutrition.ts\).
+- Exporta los tipos inferidos de Drizzle: \export type Food = typeof foods.;\.
+
+## Reactividad en UI
+- Usa \useLiveQuery\ de Drizzle en los componentes de UI para que las listas (ej: comidas del dia) se actualicen automaticamente cuando hay un \INSERT\ o \UPDATE\ local.
+
+## Sincronizacion (Sync Queue)
+- Toda accion de escritura (Crear, Actualizar, Borrar) debe primero impactar en SQLite.
+- Encole la accion en una tabla de \sync_queue\ local para luego sincronizarla con el backend (Supabase) cuando haya internet (Offline-First strategy).
+
