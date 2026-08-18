@@ -1,0 +1,22 @@
+---
+description: Reglas y checklist estricto para el proceso de /review y /ultrareview
+globs: src/**/*.*
+---
+# Code Review & Ultrareview Skill
+
+## Obligacion del Agente
+- Antes de dar por finalizada una implementacion o sugerir un commit, DEBES ejecutar un proceso de revision estricto del codigo generado.
+- Si los plugins \/review\ o \/ultrareview\ estan disponibles en la CLI del usuario, recuerdale ejecutarlos.
+
+## Criterios de /review (Revision Estandar)
+- **Tipado Fuerte:** ¿Hay algun \ny\ o tipo inferido peligrosamente? Todo debe estar tipado con TypeScript o Zod.
+- **Limpieza:** ¿Quedaron \console.log\ olvidados? ¿Hay imports sin usar?
+- **UI/UX:** ¿Se estan usando los colores del Design System (\src/core/theme\) en lugar de colores hardcodeados?
+- **Dependencias:** ¿Se importo correctamente desde los alias de path (\@/...\)?
+
+## Criterios de /ultrareview (Analisis Profundo)
+- **Fugas de Memoria / Re-renders:** En React Native, verifica si hay funciones anonimas pasadas a componentes puros o FlatLists que causen re-renders masivos.
+- **Arquitectura FSD:** Verifica que la logica de negocio NO este mezclada en \src/app\. Debe estar aislada en \src/features\ o \src/core\.
+- **Rendimiento de DB:** Si tocaste una query de Drizzle/SQLite, verifica si esta pidiendo demasiados datos a la vez. Usa paginacion o limites si es necesario.
+- **Estado Global:** Si tocaste Zustand, ¿estas mutando el estado de forma inmutable? Verifica que no se rompa la persistencia.
+
