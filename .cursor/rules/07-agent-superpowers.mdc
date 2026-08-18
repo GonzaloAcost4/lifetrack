@@ -1,0 +1,27 @@
+---
+description: Reglas para la integracion de Plugins CLI (Mem, Context Mode, GSD, Frontend Design, Superpowers)
+globs: *
+---
+# Agent Superpowers & Plugins Skill
+
+## 1. claude-mem (Memoria Persistente)
+- El agente debe almacenar proactivamente las preferencias del usuario, decisiones de arquitectura y convenciones de este proyecto en memoria.
+- Antes de sugerir un refactor grande, consulta la memoria para asegurarte de no ir en contra de una decision previa.
+
+## 2. context-mode & Graphify
+- No satures el contexto leyendo todo el directorio \src\ de golpe.
+- Usa \context-mode\ apoyado en el output de \graphify\ (en \graphify-out/graph.json\) para cargar en contexto unicamente los archivos que tienen relacion directa (ej: si tocas \uthSlice.ts\, trae solo los componentes que lo consumen).
+
+## 3. get-shit-done-cc (Autonomia)
+- Al enfrentar errores de compilacion de Expo o TypeScript, tienes autorizacion para entrar en un bucle de resolucion automatica.
+- Ejecuta, lee el error, corrige el archivo y vuelve a ejecutar hasta que pase, sin necesidad de detenerte a preguntar en cada iteracion.
+
+## 4. frontend-design
+- Al disenar nuevas pantallas de React Native, aplica estandares altos de UX/UI.
+- Utiliza \lucide-react-native\ y el sistema de espaciado y colores definido en \src/core/theme\.
+- Asegurate de que los tap targets (botones) tengan al menos 44x44 puntos para accesibilidad movil.
+
+## 5. superpowers & skill-creator
+- Aprovecha las capacidades extendidas de shell para mover archivos, crear estructuras de carpetas o instalar dependencias faltantes sin dudar.
+- Si notas un patron repetitivo en el desarrollo (ej: crear un nuevo store de Zustand), sugiere generar una nueva skill usando \skill-creator\.
+
