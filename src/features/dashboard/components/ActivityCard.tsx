@@ -1,8 +1,13 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { theme } from '@/core/theme';
-import { Activity, Dumbbell, Play } from 'lucide-react-native';
+import { Play } from 'lucide-react-native';
+import { useActivityStore } from '@/features/activity/store/useActivityStore';
+import { useTrainingStore } from '@/features/training/store/useTrainingStore';
 
 export function ActivityCard() {
+  const { steps, stepGoal } = useActivityStore();
+  const { todayWorkout } = useTrainingStore();
+
   return (
     <View style={styles.container}>
       <View style={styles.sectionHeader}>
@@ -14,22 +19,24 @@ export function ActivityCard() {
 
       <View style={styles.list}>
         {/* Card Entrenamiento (Celeste Pastel) */}
-        <TouchableOpacity style={[styles.card, { backgroundColor: theme.colors.brand.blue }]}>
-          <View style={styles.cardInfo}>
-            <Text style={styles.cardTitle}>Push Day Workout</Text>
-            <View style={styles.tagsRow}>
-              <View style={[styles.pill, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
-                <Text style={styles.pillText}>45 min</Text>
-              </View>
-              <View style={[styles.pill, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
-                <Text style={styles.pillText}>Morning</Text>
+        {todayWorkout && (
+          <TouchableOpacity style={[styles.card, { backgroundColor: theme.colors.brand.blue }]}>
+            <View style={styles.cardInfo}>
+              <Text style={styles.cardTitle}>{todayWorkout.name}</Text>
+              <View style={styles.tagsRow}>
+                <View style={[styles.pill, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
+                  <Text style={styles.pillText}>{todayWorkout.duration} min</Text>
+                </View>
+                <View style={[styles.pill, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
+                  <Text style={styles.pillText}>{todayWorkout.timeOfDay}</Text>
+                </View>
               </View>
             </View>
-          </View>
-          <View style={[styles.playIconContainer, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
-             <Play color={theme.colors.brand.dark} size={16} fill={theme.colors.brand.dark} />
-          </View>
-        </TouchableOpacity>
+            <View style={[styles.playIconContainer, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
+               <Play color={theme.colors.brand.dark} size={16} fill={theme.colors.brand.dark} />
+            </View>
+          </TouchableOpacity>
+        )}
 
         {/* Card Pasos (Blanco con sombra sutil) */}
         <TouchableOpacity style={[styles.card, { backgroundColor: theme.colors.bg.primary, elevation: 1, shadowOpacity: 0.05 }]}>
@@ -37,7 +44,7 @@ export function ActivityCard() {
             <Text style={styles.cardTitle}>Daily Steps</Text>
             <View style={styles.tagsRow}>
               <View style={[styles.pill, { backgroundColor: theme.colors.bg.secondary }]}>
-                <Text style={styles.pillText}>8,432 / 10k</Text>
+                <Text style={styles.pillText}>{(steps / 1000).toFixed(1)}k / {(stepGoal / 1000).toFixed(0)}k</Text>
               </View>
               <View style={[styles.pill, { backgroundColor: theme.colors.bg.secondary }]}>
                 <Text style={styles.pillText}>Active</Text>

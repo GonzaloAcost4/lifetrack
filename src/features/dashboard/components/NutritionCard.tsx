@@ -1,8 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { theme } from '@/core/theme';
 import { Play } from 'lucide-react-native';
+import { useNutritionStore } from '@/features/nutrition/store/useNutritionStore';
 
 export function NutritionCard() {
+  const consumed = useNutritionStore((state) => state.consumed);
+
   return (
     <View style={styles.card}>
       <View style={styles.header}>
@@ -12,7 +15,7 @@ export function NutritionCard() {
       
       <View style={styles.footer}>
         <View style={styles.pill}>
-          <Text style={styles.pillText}>1450 kcal</Text>
+          <Text style={styles.pillText}>{consumed} kcal</Text>
         </View>
 
         <View style={styles.playButton}>
