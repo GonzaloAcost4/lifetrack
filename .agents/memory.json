@@ -1,0 +1,16 @@
+{
+  "core_architecture": [
+    "Usar Feature-Sliced Design (FSD) en src/features",
+    "Estado global modular con Zustand + AsyncStorage",
+    "Navegacion con Expo Router",
+    "UI basada en tokens de src/core/theme y StyleSheet",
+    "Offline-first con Drizzle ORM y Expo SQLite"
+  ],
+  "user_preferences": [
+    "Dark Mode First",
+    "Automatizacion agresiva mediante GSD",
+    "Componentes de UI con accesibilidad tactil (44x44 min)"
+  ],
+  "resolved_errors": [],
+  "business_logic": []
+}

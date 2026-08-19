@@ -6,6 +6,7 @@
     "@expo/ui": "~57.0.11",
     "@react-native-async-storage/async-storage": "^3.1.1",
     "@supabase/supabase-js": "^2.112.3",
+    "drizzle-orm": "^0.45.2",
     "expo": "~57.0.14",
     "expo-constants": "~57.0.12",
     "expo-device": "~57.0.1",
@@ -15,6 +16,7 @@
     "expo-linking": "~57.0.6",
     "expo-router": "~57.0.14",
     "expo-splash-screen": "~57.0.7",
+    "expo-sqlite": "^57.0.1",
     "expo-status-bar": "~57.0.1",
     "expo-symbols": "~57.0.2",
     "expo-system-ui": "~57.0.2",
@@ -32,7 +34,10 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "@types/react": "~19.2.2",
+    "babel-plugin-inline-import": "^3.0.0",
+    "drizzle-kit": "^0.31.10",
     "typescript": "~6.0.3"
   },
   "scripts": {
@@ -42,7 +47,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "update-graph": "graphify ."
+    "update-graph": "graphify .",
+    "db:generate": "drizzle-kit generate"
   },
   "private": true
 }
