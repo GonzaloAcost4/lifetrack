@@ -11,14 +11,19 @@ export function LogFoodForm() {
   const [carbs, setCarbs] = useState('');
   const [fat, setFat] = useState('');
   
-  // Extraemos la acción de Zustand para sumar calorías (después lo conectamos a SQLite real)
-  const addCalories = useNutritionStore((state) => state.addCalories);
+  const addFoodLog = useNutritionStore((state) => state.addFoodLog);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!name || !calories) return;
     
-    // Por ahora solo actualizamos el store global para ver la reactividad
-    addCalories(Number(calories));
+    // Guardamos la info a la BD local
+    await addFoodLog(
+      name,
+      Number(calories),
+      Number(protein) || 0,
+      Number(carbs) || 0,
+      Number(fat) || 0
+    );
     
     // Limpiamos
     setName('');

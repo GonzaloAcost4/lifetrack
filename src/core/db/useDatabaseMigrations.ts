@@ -8,9 +8,9 @@ export function useDatabaseMigrations() {
     return { success: true, error: null };
   }
 
-  // Desactivamos la regla de hooks porque el Platform.OS nunca cambia en runtime
+  // En móvil pasamos la bd real
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { success, error } = useMigrations(db, migrations);
+  const { success, error } = useMigrations(db as any, migrations);
 
   return { success, error };
 }

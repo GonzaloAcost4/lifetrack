@@ -1,12 +1,20 @@
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '@/core/theme';
+import { useEffect } from 'react';
 import { DashboardHeader } from '@/features/dashboard/components/DashboardHeader';
 import { WeeklyStrip } from '@/features/dashboard/components/WeeklyStrip';
 import { NutritionCard } from '@/features/dashboard/components/NutritionCard';
 import { ActivityCard } from '@/features/dashboard/components/ActivityCard';
+import { useNutritionStore } from '@/features/nutrition/store/useNutritionStore';
 
 export default function DashboardScreen() {
+  const fetchTodaySummary = useNutritionStore((state) => state.fetchTodaySummary);
+
+  useEffect(() => {
+    fetchTodaySummary();
+  }, []);
+
   return (
     <SafeAreaView style={styles.safeArea} edges={['top']}>
       <ScrollView 
