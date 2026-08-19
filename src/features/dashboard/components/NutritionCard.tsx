@@ -1,59 +1,27 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { theme } from '@/core/theme';
-import { Plus } from 'lucide-react-native';
-
-interface MacroBarProps {
-  label: string;
-  consumed: number;
-  goal: number;
-  color: string;
-}
-
-function MacroBar({ label, consumed, goal, color }: MacroBarProps) {
-  const percentage = Math.min((consumed / goal) * 100, 100);
-
-  return (
-    <View style={styles.macroContainer}>
-      <View style={styles.macroHeader}>
-        <Text style={styles.macroLabel}>{label}</Text>
-        <Text style={styles.macroValues}>
-          {consumed} / {goal}g
-        </Text>
-      </View>
-      <View style={styles.progressBarBg}>
-        <View style={[styles.progressBarFill, { width: `${percentage}%`, backgroundColor: color }]} />
-      </View>
-    </View>
-  );
-}
+import { Target, ChevronRight } from 'lucide-react-native';
 
 export function NutritionCard() {
-  const goalCals = 2500;
-  const consumedCals = 1450;
-  const remainingCals = goalCals - consumedCals;
-
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <View>
-          <Text style={styles.title}>Nutrición</Text>
-          <Text style={styles.subtitle}>Faltan {remainingCals} kcal</Text>
-        </View>
-        <TouchableOpacity style={styles.addButton}>
-          <Plus color={theme.colors.bg.primary} size={20} />
-        </TouchableOpacity>
+        <Text style={styles.title}>Daily Calories</Text>
+        <Text style={styles.subtitle}>Complete your goal before 9:00 PM</Text>
       </View>
-
-      <View style={styles.content}>
-        <View style={styles.caloriesCircle}>
-          <Text style={styles.caloriesNumber}>{consumedCals}</Text>
-          <Text style={styles.caloriesLabel}>consumidas</Text>
+      
+      <View style={styles.footer}>
+        <View style={styles.avatars}>
+          <View style={[styles.avatar, { backgroundColor: theme.colors.semantic.error, zIndex: 3 }]} />
+          <View style={[styles.avatar, { backgroundColor: theme.colors.semantic.warning, marginLeft: -12, zIndex: 2 }]} />
+          <View style={[styles.avatar, { backgroundColor: theme.colors.semantic.info, marginLeft: -12, zIndex: 1 }]} />
+          <View style={[styles.avatarPlus, { marginLeft: -12, zIndex: 0 }]}>
+            <Text style={styles.avatarPlusText}>+2</Text>
+          </View>
         </View>
 
-        <View style={styles.macrosList}>
-          <MacroBar label="Proteína" consumed={85} goal={160} color={theme.colors.macros.protein} />
-          <MacroBar label="Carbo" consumed={120} goal={250} color={theme.colors.macros.carbs} />
-          <MacroBar label="Grasa" consumed={45} goal={70} color={theme.colors.macros.fat} />
+        <View style={styles.graphicContainer}>
+           <Target color={theme.colors.bg.primary} size={40} strokeWidth={1.5} />
         </View>
       </View>
     </View>
@@ -62,86 +30,74 @@ export function NutritionCard() {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: theme.colors.bg.secondary,
+    backgroundColor: theme.colors.brand.purple,
     borderRadius: theme.borderRadius.xl,
     padding: theme.spacing.lg,
     marginHorizontal: theme.spacing.lg,
-    marginBottom: theme.spacing.md,
+    marginBottom: theme.spacing.lg,
+    minHeight: 160,
+    justifyContent: 'space-between',
+    position: 'relative',
+    overflow: 'hidden',
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: theme.spacing.lg,
+    marginBottom: theme.spacing.md,
   },
   title: {
     color: theme.colors.text.primary,
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 28,
+    fontWeight: '900',
+    marginBottom: 4,
+    maxWidth: '70%',
+    lineHeight: 32,
   },
   subtitle: {
-    color: theme.colors.text.secondary,
+    color: theme.colors.text.primary,
+    opacity: 0.7,
     fontSize: 14,
-    marginTop: 2,
+    maxWidth: '70%',
   },
-  addButton: {
-    width: 44,
-    height: 44,
-    borderRadius: theme.borderRadius.full,
-    backgroundColor: theme.colors.semantic.success,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  content: {
+  footer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: theme.spacing.xl,
+    justifyContent: 'space-between',
+    marginTop: theme.spacing.md,
   },
-  caloriesCircle: {
-    width: 120,
-    height: 120,
-    borderRadius: 60,
-    borderWidth: 8,
-    borderColor: theme.colors.macros.calories,
+  avatars: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  avatar: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: theme.colors.brand.purple,
+  },
+  avatarPlus: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: theme.colors.brand.purple,
+    backgroundColor: 'rgba(0,0,0,0.2)',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  caloriesNumber: {
+  avatarPlusText: {
     color: theme.colors.text.primary,
-    fontSize: 24,
+    fontSize: 10,
     fontWeight: 'bold',
   },
-  caloriesLabel: {
-    color: theme.colors.text.secondary,
-    fontSize: 12,
-  },
-  macrosList: {
-    flex: 1,
-    gap: theme.spacing.md,
-  },
-  macroContainer: {},
-  macroHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 6,
-  },
-  macroLabel: {
-    color: theme.colors.text.primary,
-    fontSize: 12,
-    fontWeight: '500',
-  },
-  macroValues: {
-    color: theme.colors.text.secondary,
-    fontSize: 12,
-  },
-  progressBarBg: {
-    height: 6,
-    backgroundColor: theme.colors.bg.tertiary,
-    borderRadius: theme.borderRadius.full,
-    overflow: 'hidden',
-  },
-  progressBarFill: {
-    height: '100%',
-    borderRadius: theme.borderRadius.full,
+  graphicContainer: {
+    position: 'absolute',
+    right: -10,
+    bottom: -10,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

@@ -1,28 +1,28 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { theme } from '@/core/theme';
-import { User, Bell } from 'lucide-react-native';
+import { User, Search } from 'lucide-react-native';
 
 export function DashboardHeader() {
-  const today = new Date().toLocaleDateString('es-ES', {
-    weekday: 'long',
+  const today = new Date().toLocaleDateString('en-US', {
     day: 'numeric',
-    month: 'long',
+    month: 'short',
   });
 
   return (
     <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text style={styles.date}>{today.charAt(0).toUpperCase() + today.slice(1)}</Text>
-        <Text style={styles.greeting}>Hola, Gonzalo 👋</Text>
-      </View>
-      <View style={styles.actions}>
-        <TouchableOpacity style={styles.iconButton}>
-          <Bell color={theme.colors.text.secondary} size={24} />
-        </TouchableOpacity>
+      <View style={styles.leftSection}>
         <TouchableOpacity style={styles.avatarButton}>
           <User color={theme.colors.bg.primary} size={24} />
         </TouchableOpacity>
+        <View style={styles.textContainer}>
+          <Text style={styles.greeting}>Hello, Gonzalo</Text>
+          <Text style={styles.date}>Today {today}.</Text>
+        </View>
       </View>
+      
+      <TouchableOpacity style={styles.iconButton}>
+        <Search color={theme.colors.text.primary} size={22} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -34,39 +34,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: theme.spacing.lg,
     paddingTop: theme.spacing.xl,
-    paddingBottom: theme.spacing.md,
+    paddingBottom: theme.spacing.xl,
   },
-  textContainer: {
-    flex: 1,
-  },
-  date: {
-    color: theme.colors.text.secondary,
-    fontSize: 14,
-    textTransform: 'capitalize',
-    marginBottom: 4,
-  },
-  greeting: {
-    color: theme.colors.text.primary,
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  actions: {
+  leftSection: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: theme.spacing.md,
   },
-  iconButton: {
-    width: 44,
-    height: 44,
+  avatarButton: {
+    width: 48,
+    height: 48,
+    borderRadius: theme.borderRadius.full,
+    backgroundColor: theme.colors.brand.purple,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  avatarButton: {
-    width: 44,
-    height: 44,
+  textContainer: {},
+  greeting: {
+    color: theme.colors.text.primary,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  date: {
+    color: theme.colors.text.secondary,
+    fontSize: 13,
+    marginTop: 2,
+  },
+  iconButton: {
+    width: 48,
+    height: 48,
     borderRadius: theme.borderRadius.full,
-    backgroundColor: theme.colors.accent.primary,
+    backgroundColor: theme.colors.bg.secondary,
     justifyContent: 'center',
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.03,
+    shadowRadius: 8,
+    elevation: 2,
   },
 });

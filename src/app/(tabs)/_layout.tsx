@@ -11,17 +11,33 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
-        tabBarActiveTintColor: activeColor,
-        tabBarInactiveTintColor: inactiveColor,
+        headerShown: false,
+        tabBarActiveTintColor: theme.colors.brand.dark,
+        tabBarInactiveTintColor: 'rgba(255,255,255,0.5)',
+        tabBarActiveBackgroundColor: theme.colors.bg.secondary,
+        tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: colorScheme === 'dark' ? theme.colors.bg.secondary : '#FFFFFF',
-          borderTopColor: colorScheme === 'dark' ? theme.colors.bg.tertiary : '#E2E8F0',
+          backgroundColor: theme.colors.brand.dark,
+          position: 'absolute',
+          bottom: 24,
+          left: 24,
+          right: 24,
+          height: 72,
+          borderRadius: 36,
+          borderTopWidth: 0,
+          elevation: 10,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 10 },
+          shadowOpacity: 0.1,
+          shadowRadius: 20,
+          paddingHorizontal: 8,
+          paddingBottom: 0,
         },
-        headerStyle: {
-          backgroundColor: colorScheme === 'dark' ? theme.colors.bg.primary : '#FFFFFF',
+        tabBarItemStyle: {
+          height: 56,
+          marginTop: 8,
+          borderRadius: 28,
         },
-        headerTintColor: colorScheme === 'dark' ? theme.colors.text.primary : '#1A202C',
       }}>
       <Tabs.Screen
         name="index"

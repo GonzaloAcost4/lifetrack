@@ -2,6 +2,7 @@ import { View, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { theme } from '@/core/theme';
 import { DashboardHeader } from '@/features/dashboard/components/DashboardHeader';
+import { WeeklyStrip } from '@/features/dashboard/components/WeeklyStrip';
 import { NutritionCard } from '@/features/dashboard/components/NutritionCard';
 import { ActivityCard } from '@/features/dashboard/components/ActivityCard';
 
@@ -15,6 +16,7 @@ export default function DashboardScreen() {
       >
         <DashboardHeader />
         <NutritionCard />
+        <WeeklyStrip />
         <ActivityCard />
       </ScrollView>
     </SafeAreaView>
