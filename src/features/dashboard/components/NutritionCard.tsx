@@ -9,8 +9,8 @@ export function NutritionCard() {
   return (
     <View style={styles.card}>
       <View style={styles.header}>
-        <Text style={styles.title}>Daily Calories</Text>
-        <Text style={styles.subtitle}>Nutritional Balance</Text>
+        <Text style={styles.title}>Calorías Diarias</Text>
+        <Text style={styles.subtitle}>Balance Nutricional</Text>
       </View>
       
       <View style={styles.footer}>

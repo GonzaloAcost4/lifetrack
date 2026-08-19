@@ -15,19 +15,19 @@ export default function NutritionScreen() {
         showsVerticalScrollIndicator={false}
       >
         <View style={styles.header}>
-          <Text style={styles.title}>Nutrition</Text>
-          <Text style={styles.subtitle}>Track your meals</Text>
+          <Text style={styles.title}>Nutrición</Text>
+          <Text style={styles.subtitle}>Registrá tus comidas</Text>
         </View>
 
         {/* Resumen Superior */}
         <View style={styles.summaryCard}>
           <View style={styles.summaryItem}>
-            <Text style={styles.summaryLabel}>Consumed</Text>
+            <Text style={styles.summaryLabel}>Consumidas</Text>
             <Text style={styles.summaryValue}>{consumed}</Text>
           </View>
           <View style={styles.divider} />
           <View style={styles.summaryItem}>
-            <Text style={styles.summaryLabel}>Remaining</Text>
+            <Text style={styles.summaryLabel}>Restantes</Text>
             <Text style={styles.summaryValue}>{dailyGoal - consumed}</Text>
           </View>
         </View>

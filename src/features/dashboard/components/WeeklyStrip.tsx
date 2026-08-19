@@ -4,13 +4,13 @@ import { theme } from '@/core/theme';
 export function WeeklyStrip() {
   // Generamos una semana de prueba
   const days = [
-    { name: 'Sun', date: '22', active: false },
-    { name: 'Mon', date: '23', active: false },
-    { name: 'Tue', date: '24', active: false },
-    { name: 'Wed', date: '25', active: true },
-    { name: 'Thu', date: '26', active: false },
-    { name: 'Fri', date: '27', active: false },
-    { name: 'Sat', date: '28', active: false },
+    { name: 'Dom', date: '22', active: false },
+    { name: 'Lun', date: '23', active: false },
+    { name: 'Mar', date: '24', active: false },
+    { name: 'Mié', date: '25', active: true },
+    { name: 'Jue', date: '26', active: false },
+    { name: 'Vie', date: '27', active: false },
+    { name: 'Sáb', date: '28', active: false },
   ];
 
   return (

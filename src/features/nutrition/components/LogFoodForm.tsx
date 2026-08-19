@@ -30,12 +30,12 @@ export function LogFoodForm() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Add new food</Text>
+      <Text style={styles.title}>Agregar alimento</Text>
       
       <View style={styles.inputGroup}>
         <TextInput 
           style={styles.input} 
-          placeholder="What did you eat?"
+          placeholder="¿Qué comiste?"
           placeholderTextColor={theme.colors.text.secondary}
           value={name}
           onChangeText={setName}
@@ -46,7 +46,7 @@ export function LogFoodForm() {
         <View style={[styles.inputGroup, { flex: 1 }]}>
           <TextInput 
             style={styles.input} 
-            placeholder="Calories"
+            placeholder="Calorías"
             placeholderTextColor={theme.colors.text.secondary}
             keyboardType="numeric"
             value={calories}
@@ -56,7 +56,7 @@ export function LogFoodForm() {
         <View style={[styles.inputGroup, { flex: 1 }]}>
           <TextInput 
             style={styles.input} 
-            placeholder="Protein (g)"
+            placeholder="Proteína (g)"
             placeholderTextColor={theme.colors.text.secondary}
             keyboardType="numeric"
             value={protein}
@@ -69,7 +69,7 @@ export function LogFoodForm() {
         <View style={[styles.inputGroup, { flex: 1 }]}>
           <TextInput 
             style={styles.input} 
-            placeholder="Carbs (g)"
+            placeholder="Carbohidratos (g)"
             placeholderTextColor={theme.colors.text.secondary}
             keyboardType="numeric"
             value={carbs}
@@ -79,7 +79,7 @@ export function LogFoodForm() {
         <View style={[styles.inputGroup, { flex: 1 }]}>
           <TextInput 
             style={styles.input} 
-            placeholder="Fat (g)"
+            placeholder="Grasas (g)"
             placeholderTextColor={theme.colors.text.secondary}
             keyboardType="numeric"
             value={fat}
@@ -90,7 +90,7 @@ export function LogFoodForm() {
 
       <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
         <Plus color={theme.colors.text.inverse} size={20} />
-        <Text style={styles.saveButtonText}>Log Food</Text>
+        <Text style={styles.saveButtonText}>Guardar Comida</Text>
       </TouchableOpacity>
     </View>
   );

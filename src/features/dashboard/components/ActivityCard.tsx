@@ -11,9 +11,9 @@ export function ActivityCard() {
   return (
     <View style={styles.container}>
       <View style={styles.sectionHeader}>
-        <Text style={styles.sectionTitle}>Special for you</Text>
+        <Text style={styles.sectionTitle}>Especial para vos</Text>
         <TouchableOpacity>
-          <Text style={styles.seeAllText}>See all</Text>
+          <Text style={styles.seeAllText}>Ver todo</Text>
         </TouchableOpacity>
       </View>
 
@@ -28,7 +28,7 @@ export function ActivityCard() {
                   <Text style={styles.pillText}>{todayWorkout.duration} min</Text>
                 </View>
                 <View style={[styles.pill, { backgroundColor: 'rgba(255,255,255,0.4)' }]}>
-                  <Text style={styles.pillText}>{todayWorkout.timeOfDay}</Text>
+                  <Text style={styles.pillText}>{todayWorkout.timeOfDay === 'Morning' ? 'Mañana' : todayWorkout.timeOfDay === 'Afternoon' ? 'Tarde' : 'Noche'}</Text>
                 </View>
               </View>
             </View>
@@ -41,13 +41,13 @@ export function ActivityCard() {
         {/* Card Pasos (Blanco con sombra sutil) */}
         <TouchableOpacity style={[styles.card, { backgroundColor: theme.colors.bg.primary, elevation: 1, shadowOpacity: 0.05 }]}>
           <View style={styles.cardInfo}>
-            <Text style={styles.cardTitle}>Daily Steps</Text>
+            <Text style={styles.cardTitle}>Pasos Diarios</Text>
             <View style={styles.tagsRow}>
               <View style={[styles.pill, { backgroundColor: theme.colors.bg.secondary }]}>
                 <Text style={styles.pillText}>{(steps / 1000).toFixed(1)}k / {(stepGoal / 1000).toFixed(0)}k</Text>
               </View>
               <View style={[styles.pill, { backgroundColor: theme.colors.bg.secondary }]}>
-                <Text style={styles.pillText}>Active</Text>
+                <Text style={styles.pillText}>Activo</Text>
               </View>
             </View>
           </View>

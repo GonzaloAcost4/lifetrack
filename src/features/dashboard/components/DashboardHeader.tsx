@@ -6,7 +6,7 @@ export function DashboardHeader() {
   return (
     <View style={styles.container}>
       <View style={styles.topRow}>
-        <Text style={styles.greeting}>Hello, Gonzalo 👋</Text>
+        <Text style={styles.greeting}>Hola, Gonzalo 👋</Text>
         <TouchableOpacity style={styles.iconButton}>
           <Bell color={theme.colors.text.inverse} size={20} />
         </TouchableOpacity>
@@ -16,7 +16,7 @@ export function DashboardHeader() {
         <Search color={theme.colors.text.secondary} size={20} style={styles.searchIcon} />
         <TextInput 
           style={styles.searchInput}
-          placeholder="Search..."
+          placeholder="Buscar..."
           placeholderTextColor={theme.colors.text.secondary}
         />
       </View>
