@@ -1,76 +1,71 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import { theme } from '@/core/theme';
-import { User, Search } from 'lucide-react-native';
+import { Bell, Search } from 'lucide-react-native';
 
 export function DashboardHeader() {
-  const today = new Date().toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'short',
-  });
-
   return (
     <View style={styles.container}>
-      <View style={styles.leftSection}>
-        <TouchableOpacity style={styles.avatarButton}>
-          <User color={theme.colors.bg.primary} size={24} />
+      <View style={styles.topRow}>
+        <Text style={styles.greeting}>Hello, Gonzalo 👋</Text>
+        <TouchableOpacity style={styles.iconButton}>
+          <Bell color={theme.colors.text.inverse} size={20} />
         </TouchableOpacity>
-        <View style={styles.textContainer}>
-          <Text style={styles.greeting}>Hello, Gonzalo</Text>
-          <Text style={styles.date}>Today {today}.</Text>
-        </View>
       </View>
       
-      <TouchableOpacity style={styles.iconButton}>
-        <Search color={theme.colors.text.primary} size={22} />
-      </TouchableOpacity>
+      <View style={styles.searchContainer}>
+        <Search color={theme.colors.text.secondary} size={20} style={styles.searchIcon} />
+        <TextInput 
+          style={styles.searchInput}
+          placeholder="Search..."
+          placeholderTextColor={theme.colors.text.secondary}
+        />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingHorizontal: theme.spacing.lg,
+    paddingTop: theme.spacing.xl,
+    paddingBottom: theme.spacing.md,
+    backgroundColor: theme.colors.bg.primary,
+  },
+  topRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingHorizontal: theme.spacing.lg,
-    paddingTop: theme.spacing.xl,
-    paddingBottom: theme.spacing.xl,
+    marginBottom: theme.spacing.lg,
   },
-  leftSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: theme.spacing.md,
-  },
-  avatarButton: {
-    width: 48,
-    height: 48,
-    borderRadius: theme.borderRadius.full,
-    backgroundColor: theme.colors.brand.purple,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  textContainer: {},
   greeting: {
     color: theme.colors.text.primary,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  date: {
-    color: theme.colors.text.secondary,
-    fontSize: 13,
-    marginTop: 2,
+    fontSize: 32,
+    fontWeight: '900',
+    letterSpacing: -0.5,
   },
   iconButton: {
     width: 48,
     height: 48,
-    borderRadius: theme.borderRadius.full,
-    backgroundColor: theme.colors.bg.secondary,
+    borderRadius: 24,
+    backgroundColor: theme.colors.brand.dark,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.03,
-    shadowRadius: 8,
-    elevation: 2,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: theme.colors.bg.secondary,
+    borderRadius: theme.borderRadius.full,
+    paddingHorizontal: theme.spacing.md,
+    height: 52,
+  },
+  searchIcon: {
+    marginRight: 10,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    color: theme.colors.text.primary,
+    height: '100%',
   },
 });
